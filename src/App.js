@@ -70,7 +70,7 @@ class App extends Component {
             <div className="col-8-md">
               <div className="gameboard">
               {[...Array(17)].map((e, i) => 
-                [...Array(23)].map((e, j) => <div className={this.snake[i][j]==1?"cell snakebody":(this.snake[i][j]==2?"cell food":"cell")} key={i+''+j}></div>)
+                [...Array(23)].map((e, j) => <div className={this.snake[i][j]===1?"cell snakebody":(this.snake[i][j]===2?"cell food":"cell")} key={i+''+j}></div>)
               )}
               <div style={this.overlayOpacity} className="overlay ">
                 <p className="game-over" style={ {display: (this.isGameOver?'block':'none')}} >GAME OVER</p>
@@ -91,25 +91,25 @@ class App extends Component {
   handleKeyDown = (e)=> {
     switch(e.keyCode){
       case 38:
-        if(this.direction!="D"){
+        if(this.direction!=="D"){
           this.upArrowKey();
           this.direction = "U";
         }
         break;
       case 40:
-        if(this.direction!="U"){
+        if(this.direction!=="U"){
           this.downArrowKey();
           this.direction = "D";
         }
         break;
       case 37:
-        if(this.direction!="R"){
+        if(this.direction!=="R"){
           this.leftArrowKey();
           this.direction = "L";
         }
         break;
       case 39:
-        if(this.direction!="L"){
+        if(this.direction!=="L"){
           this.rightArrowKey();
           this.direction = "R";
         }
@@ -149,10 +149,10 @@ class App extends Component {
       
       this.headX = this.headX+this.incX;
       this.headY = this.headY+this.incY;
-      if(this.headX >= this.rows || this.headY > this.columns || this.headX <0 || this.headY < 0 || this.snake[this.headX][this.headY]==1){
+      if(this.headX >= this.rows || this.headY > this.columns || this.headX <0 || this.headY < 0 || this.snake[this.headX][this.headY]===1){
         this.gameOver();
       }
-      else if(this.snake[this.headX][this.headY] ==2){
+      else if(this.snake[this.headX][this.headY] ===2){
         this.snake[this.headX][this.headY] = 1;
         this.snakeQueue.push([ this.headX, this.headY ]);
         this.generateFood();
@@ -189,7 +189,7 @@ class App extends Component {
   generateFood =()=>{
     this.foodX = Math.floor(Math.random() * (this.rows));
     this.foodY = Math.floor(Math.random() * (this.columns));
-    if(this.snakeQueue.find(e=> e[0] == this.foodX && e[1]== this.foodY)){
+    if(this.snakeQueue.find(e=> e[0] === this.foodX && e[1]=== this.foodY)){
       this.generateFood();
     }else{
     this.snake[this.foodX][this.foodY] = 2;
@@ -199,7 +199,7 @@ class App extends Component {
 
   increaseScore = ()=>{
     this.gameStatus.score++;
-    if(this.gameStatus.score%10==0 && this.gameStatus.level < 3){
+    if(this.gameStatus.score%10===0 && this.gameStatus.level < 3){
       this.speed = this.speed-100;
       this.gameStatus.level++;
       clearInterval(this.gameInterval);
