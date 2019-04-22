@@ -2,6 +2,7 @@
   "name": "snake-game",
   "version": "0.1.0",
   "private": true,
+  "homepage" : "http://manishmz.github.io/snakegame",
   "dependencies": {
     "bootstrap": "^4.1.1",
     "react": "^16.8.6",
