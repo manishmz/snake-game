@@ -114,6 +114,8 @@ class App extends Component {
           this.direction = "R";
         }
         break;
+      default:
+        console.log("Do Nothing");
     }
   }
   upArrowKey=()=>{
